@@ -3,37 +3,25 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <meta name="theme-color" content="#000000" />
-  <title>Auto Detox Studio — We Don't Wash, We Detox.</title>
-  <meta name="description" content="India's First Car Detox Studio — deep cleaning, sanitization & restoration. We don't wash, we detox." />
-  <meta property="og:title" content="Auto Detox Studio" />
-  <meta property="og:description" content="India's First Car Detox Studio. Premium deep cleaning, sanitization & restoration." />
+  <meta name="theme-color" content="#ffffff" />
+  <title>Auto Detox Studio — India's First 23-Step Car Detox Studio</title>
+  <meta name="description" content="India's First Car Detox Studio. A 23-step deep cleaning, sanitization & restoration process for hatchbacks, sedans and SUVs. Near Rajyog Petrol Pump, Walhekarwadi Road, PCMC." />
+  <meta property="og:title" content="Auto Detox Studio — India's First 23-Step Car Detox" />
+  <meta property="og:description" content="Deep detox your car — not just a wash. 23-step complete car detox process." />
   <meta property="og:type" content="website" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/styles.css" />
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
 </head>
 <body>
-  <!-- Animated background canvas -->
-  <canvas id="bg-canvas" aria-hidden="true"></canvas>
-  <div class="grid-overlay" aria-hidden="true"></div>
-
-  <!-- Loader -->
-  <div id="loader" aria-hidden="true">
-    <div class="loader-logo">
-      <span class="lg-a">A</span><span class="lg-d">D</span>
-    </div>
-    <div class="loader-bar"><span></span></div>
-    <div class="loader-tag">WE DON'T WASH, WE DETOX.</div>
-  </div>
 
   <!-- NAV -->
   <header class="nav" id="nav">
     <a href="#top" class="brand" aria-label="Auto Detox Studio">
       <span class="brand-mark">
-        <img src="assets/AutoDetoxStudioLogo.jpg" alt="Auto Detox Studio" width="56" height="56" />
+        <img src="assets/AutoDetoxStudioLogo.jpg" alt="Auto Detox Studio" width="52" height="52" />
       </span>
       <span class="brand-text">
         <strong>AUTO <em>DETOX</em></strong>
@@ -41,13 +29,14 @@
       </span>
     </a>
     <nav class="nav-links" aria-label="Primary">
-      <a href="#about">About</a>
       <a href="#services">Services</a>
-      <a href="#compare">Compare</a>
+      <a href="#process">Process</a>
+      <a href="#packages">Packages</a>
+      <a href="#why">Why Us</a>
       <a href="#book">Book</a>
       <a href="#contact">Contact</a>
     </nav>
-    <a href="#book" class="cta-btn nav-cta">Book Detox <span class="arrow">→</span></a>
+    <a href="#book" class="cta-btn primary nav-cta">Book Detox <span class="arrow">→</span></a>
     <button class="burger" id="burger" aria-label="Menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
@@ -55,26 +44,19 @@
 
   <!-- HERO -->
   <section class="hero" id="top">
-    <div class="hero-bg" aria-hidden="true">
-      <div class="orb orb-1"></div>
-      <div class="orb orb-2"></div>
-      <div class="orb orb-3"></div>
-      <div class="scanline"></div>
-    </div>
-
     <div class="hero-inner">
-      <div class="badge reveal">
+      <span class="badge reveal">
         <span class="dot"></span> India's First Car Detox Studio
-      </div>
+      </span>
 
       <h1 class="hero-title reveal">
-        <span class="line">WE DON'T <span class="strike">WASH</span>,</span>
-        <span class="line shimmer">WE <span class="accent">DETOX</span>.</span>
+        Deep <span class="accent">Detox</span> Your Car
+        <span class="thin">Not Just a Wash.</span>
       </h1>
 
       <p class="hero-sub reveal">
-        Not just a wash — a full <b>deep cleaning</b>, <b>sanitization</b> &amp;
-        <b>restoration</b> ritual for your car. Inside out. Bumper to bumper.
+        A 23-step complete car detox process — removes dirt, germs, odours &amp; hidden contaminants.
+        Restores shine, protects surfaces &amp; transforms your driving experience.
       </p>
 
       <div class="hero-ctas reveal">
@@ -82,209 +64,205 @@
           <span>Book Your Detox</span>
           <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M5 12h12.2l-4.6-4.6L14 6l7 6-7 6-1.4-1.4 4.6-4.6H5z"/></svg>
         </a>
-        <a href="#services" class="cta-btn ghost">Explore Services</a>
+        <a href="#packages" class="cta-btn ghost">See Packages</a>
       </div>
 
-      <div class="hero-stats reveal">
-        <div><strong data-count="99.9">0</strong><span>% Germs Killed</span></div>
-        <div><strong data-count="8">0</strong><span>Detox Stages</span></div>
-        <div><strong data-count="100">0</strong><span>% Premium Care</span></div>
-      </div>
-    </div>
-
-    <div class="scroll-hint" aria-hidden="true">
-      <span></span> Scroll
+      <ul class="hero-features reveal">
+        <li>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2c-3 5-6 8-6 12a6 6 0 0 0 12 0c0-4-3-7-6-12"/></svg>
+          Removes Dirt
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2 4 5v6c0 5 3.4 9.7 8 11 4.6-1.3 8-6 8-11V5z"/></svg>
+          Kills Germs
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4 12h11a3 3 0 1 0-3-3h-2a5 5 0 1 1 5 5H4zm0 4h15a3 3 0 1 1-3 3h-2a5 5 0 1 0 5-5H4z"/></svg>
+          Neutralises Odours
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2 3 6v6c0 5 4 9 9 10 5-1 9-5 9-10V6zm0 4a3 3 0 1 1 0 6 3 3 0 0 1 0-6"/></svg>
+          Hidden Contaminants
+        </li>
+      </ul>
     </div>
   </section>
 
-  <!-- MARQUEE -->
-  <div class="marquee" aria-hidden="true">
-    <div class="marquee-track">
-      <span>DEEP CLEANING</span><i>◆</i>
-      <span>SANITIZATION</span><i>◆</i>
-      <span>RESTORATION</span><i>◆</i>
-      <span>FOAM WASH</span><i>◆</i>
-      <span>ENGINE BAY</span><i>◆</i>
-      <span>INTERIOR DETAILING</span><i>◆</i>
-      <span>GLASS &amp; TYRE</span><i>◆</i>
-      <span>WE DON'T WASH, WE DETOX</span><i>◆</i>
-      <span>DEEP CLEANING</span><i>◆</i>
-      <span>SANITIZATION</span><i>◆</i>
-      <span>RESTORATION</span><i>◆</i>
-      <span>FOAM WASH</span><i>◆</i>
-      <span>ENGINE BAY</span><i>◆</i>
-      <span>INTERIOR DETAILING</span><i>◆</i>
-      <span>GLASS &amp; TYRE</span><i>◆</i>
-      <span>WE DON'T WASH, WE DETOX</span><i>◆</i>
+  <!-- SUB-STRIP -->
+  <div class="sub-strip">
+    <div class="sub-strip-inner">
+      <span>Restores Shine</span>
+      <i>•</i>
+      <span>Protects Surfaces</span>
+      <i>•</i>
+      <span>Enhances Driving Experience</span>
     </div>
   </div>
 
-  <!-- ABOUT -->
-  <section class="about section" id="about">
-    <div class="section-head reveal">
-      <span class="eyebrow">// What is</span>
-      <h2>CAR <span class="accent">DETOX</span>?</h2>
-      <div class="divider"></div>
-    </div>
-
-    <div class="about-grid">
-      <div class="about-copy reveal">
-        <p class="lead">
-          Car Detox म्हणजे फक्त बाहेरुन car wash नाही —
-          तर गाडीची <b class="accent">deep cleaning + sanitization + restoration</b> process आहे.
-        </p>
-        <p>
-          A regular wash only touches the surface. A <b>Detox</b> rebuilds the
-          health of your vehicle — eliminating bacteria, odour, grime and
-          oxidation from every layer of interior and exterior. Your car leaves
-          looking, smelling and feeling new.
-        </p>
-        <ul class="check-list">
-          <li>Hospital-grade sanitization</li>
-          <li>Premium foam &amp; pH-neutral chemistry</li>
-          <li>Long-lasting paint &amp; interior protection</li>
-        </ul>
-      </div>
-
-      <div class="about-card reveal">
-        <div class="card-glow"></div>
-        <div class="ring">
-          <span class="ring-text">WE DON'T WASH · WE DETOX · WE DON'T WASH · WE DETOX ·</span>
-        </div>
-        <div class="ring-core">
-          <span class="big">AD</span>
-          <span class="small">STUDIO</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SERVICES -->
+  <!-- SERVICES / TAGS -->
   <section class="services section" id="services">
     <div class="section-head reveal">
-      <span class="eyebrow">// CAR DETOX मध्ये काय होते?</span>
-      <h2>The 8-Stage <span class="accent">Detox Ritual</span></h2>
+      <span class="eyebrow">// What We Offer</span>
+      <h2>Our <span class="accent">Services</span></h2>
       <div class="divider"></div>
+      <p class="section-lead">Every detox covers a complete range of premium care — pick a package, we handle the rest.</p>
     </div>
 
-    <div class="services-grid">
-      <!-- 1 -->
-      <article class="svc reveal">
-        <div class="svc-num">01</div>
-        <div class="svc-icon">
-          <svg viewBox="0 0 24 24"><path fill="currentColor" d="M6 4h12a3 3 0 0 1 3 3v6h-3V8a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1v5H3V7a3 3 0 0 1 3-3m-3 11h18v3a3 3 0 0 1-3 3h-1v2h-2v-2H9v2H7v-2H6a3 3 0 0 1-3-3z"/></svg>
+    <div class="tag-cloud reveal">
+      <a href="#process" class="tag">Premium Foam Wash</a>
+      <a href="#process" class="tag">Interior Deep Cleaning</a>
+      <a href="#process" class="tag">Steam Sanitization</a>
+      <a href="#process" class="tag">AC Vent Cleaning</a>
+      <a href="#process" class="tag">Engine Bay Cleaning</a>
+      <a href="#process" class="tag">Underbody Cleaning</a>
+      <a href="#process" class="tag">Dashboard Detailing</a>
+      <a href="#process" class="tag">Seat &amp; Carpet Deep Clean</a>
+      <a href="#process" class="tag">Roof Lining Cleaning</a>
+      <a href="#process" class="tag">Door Pad Cleaning</a>
+      <a href="#process" class="tag">Floor Mat Cleaning</a>
+      <a href="#process" class="tag">Odour Removal Treatment</a>
+      <a href="#process" class="tag">Glass Polishing</a>
+      <a href="#process" class="tag">Tyre &amp; Alloy Cleaning</a>
+      <a href="#process" class="tag">Tyre Dressing</a>
+      <a href="#process" class="tag">Paint Decontamination</a>
+      <a href="#process" class="tag">Premium Liquid Wax</a>
+      <a href="#process" class="tag">Plastic Restoration</a>
+      <a href="#process" class="tag">Boot Space Cleaning</a>
+      <a href="#process" class="tag">Gap &amp; Crevice Cleaning</a>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="process section" id="process">
+    <div class="section-head reveal">
+      <span class="eyebrow">// Second-to-None Car Care</span>
+      <h2>Our <span class="accent">23-Step</span> Car Detox Process</h2>
+      <div class="divider"></div>
+      <p class="section-lead">Every car goes through the same complete ritual — inside out, bumper to bumper.</p>
+    </div>
+
+    <div class="process-grid">
+      <article class="step reveal"><span class="step-num">01</span><h3>Premium Touchless Foam Wash</h3></article>
+      <article class="step reveal"><span class="step-num">02</span><h3>Complete Interior Deep Cleaning</h3></article>
+      <article class="step reveal"><span class="step-num">03</span><h3>Full Steam Sanitization</h3></article>
+      <article class="step reveal"><span class="step-num">04</span><h3>AC Vent Cleaning</h3></article>
+      <article class="step reveal"><span class="step-num">05</span><h3>Underbody Cleaning</h3></article>
+      <article class="step reveal"><span class="step-num">06</span><h3>Engine Bay Cleaning</h3></article>
+      <article class="step reveal"><span class="step-num">07</span><h3>Boot Space Cleaning</h3></article>
+      <article class="step reveal"><span class="step-num">08</span><h3>Interior Plastic Restoration</h3></article>
+      <article class="step reveal"><span class="step-num">09</span><h3>Premium Plastic Dresser Application</h3></article>
+      <article class="step reveal"><span class="step-num">10</span><h3>Dashboard &amp; Console Detailing</h3></article>
+      <article class="step reveal"><span class="step-num">11</span><h3>Seat &amp; Carpet Deep Cleaning</h3></article>
+      <article class="step reveal"><span class="step-num">12</span><h3>Door Pad Cleaning</h3></article>
+      <article class="step reveal"><span class="step-num">13</span><h3>Roof Lining Cleaning</h3></article>
+      <article class="step reveal"><span class="step-num">14</span><h3>Floor Mat Cleaning</h3></article>
+      <article class="step reveal"><span class="step-num">15</span><h3>Odour Removal Treatment</h3></article>
+      <article class="step reveal"><span class="step-num">16</span><h3>Glass Cleaning &amp; Polishing</h3></article>
+      <article class="step reveal"><span class="step-num">17</span><h3>Tyre &amp; Alloy Cleaning</h3></article>
+      <article class="step reveal"><span class="step-num">18</span><h3>Tyre Dressing</h3></article>
+      <article class="step reveal"><span class="step-num">19</span><h3>Exterior Plastic Restoration</h3></article>
+      <article class="step reveal"><span class="step-num">20</span><h3>Premium Liquid Wax Application</h3></article>
+      <article class="step reveal"><span class="step-num">21</span><h3>Paint Surface Decontamination</h3></article>
+      <article class="step reveal"><span class="step-num">22</span><h3>Gap &amp; Crevice Cleaning</h3></article>
+      <article class="step reveal"><span class="step-num">23</span><h3>Sanitization Treatment</h3></article>
+      <article class="step step-final reveal"><span class="step-num">✓</span><h3>Final Quality Inspection</h3></article>
+    </div>
+  </section>
+
+  <!-- PACKAGES -->
+  <section class="packages section" id="packages">
+    <div class="section-head reveal">
+      <span class="eyebrow">// Special Introductory Pricing</span>
+      <h2>Choose Your <span class="accent">Package</span></h2>
+      <div class="divider"></div>
+      <p class="section-lead">Same complete 23-step detox process. Priced by vehicle size. <b>Prices shown after 50% discount.</b></p>
+    </div>
+
+    <div class="packages-grid">
+      <article class="pkg reveal">
+        <div class="pkg-tag">Compact</div>
+        <h3>Hatchback</h3>
+        <p class="pkg-eg">Swift · Baleno · i20 · Altroz · Punch · WagonR</p>
+        <div class="pkg-price">
+          <span class="cur">₹</span><span class="amt">1,999</span>
         </div>
-        <h3>Interior Deep Cleaning</h3>
-        <p>Dust, dirt, bacteria &amp; bad-smell removal from every cabin surface.</p>
+        <div class="pkg-strike">₹3,999</div>
+        <div class="pkg-note">After 50% introductory discount</div>
+        <ul>
+          <li>Full 23-step detox</li>
+          <li>Interior + Exterior + Engine bay</li>
+          <li>Premium liquid wax finish</li>
+          <li>Complete steam sanitization</li>
+        </ul>
+        <a href="#book" class="cta-btn ghost full">Book Hatchback</a>
       </article>
-      <!-- 2 -->
-      <article class="svc reveal">
-        <div class="svc-num">02</div>
-        <div class="svc-icon">
-          <svg viewBox="0 0 24 24"><path fill="currentColor" d="M5 9V6a3 3 0 0 1 3-3h8a3 3 0 0 1 3 3v3h1a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2h-1v2h-2v-2H7v2H5v-2H4a2 2 0 0 1-2-2v-6a2 2 0 0 1 2-2zm2 0h10V6a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1z"/></svg>
+
+      <article class="pkg featured reveal">
+        <div class="pkg-tag">Most Booked</div>
+        <h3>Sedan</h3>
+        <p class="pkg-eg">Dzire · Amaze · City · Verna · Slavia · Virtus</p>
+        <div class="pkg-price">
+          <span class="cur">₹</span><span class="amt">2,499</span>
         </div>
-        <h3>Seat &amp; Carpet Deep Clean</h3>
-        <p>Stain extraction, fabric care &amp; odour neutralization.</p>
+        <div class="pkg-strike">₹4,999</div>
+        <div class="pkg-note">After 50% introductory discount</div>
+        <ul>
+          <li>Full 23-step detox</li>
+          <li>Interior + Exterior + Engine bay</li>
+          <li>Premium liquid wax finish</li>
+          <li>Complete steam sanitization</li>
+        </ul>
+        <a href="#book" class="cta-btn primary full">Book Sedan</a>
       </article>
-      <!-- 3 -->
-      <article class="svc reveal">
-        <div class="svc-num">03</div>
-        <div class="svc-icon">
-          <svg viewBox="0 0 24 24"><path fill="currentColor" d="M3 5h18v4H3zm0 6h18v4H3zm0 6h18v2H3z"/></svg>
+
+      <article class="pkg reveal">
+        <div class="pkg-tag">Full-Size</div>
+        <h3>SUV / XUV</h3>
+        <p class="pkg-eg">Creta · Seltos · XUV700 · Nexon · Fortuner · Scorpio</p>
+        <div class="pkg-price">
+          <span class="cur">₹</span><span class="amt">2,999</span>
         </div>
-        <h3>AC Vent Cleaning</h3>
-        <p>Bacteria-free vents, fresh airflow &amp; healthy cabin air.</p>
-      </article>
-      <!-- 4 -->
-      <article class="svc reveal">
-        <div class="svc-num">04</div>
-        <div class="svc-icon">
-          <svg viewBox="0 0 24 24"><path fill="currentColor" d="M5 17a3 3 0 1 1 6 0 3 3 0 0 1-6 0m8 0a3 3 0 1 1 6 0 3 3 0 0 1-6 0M3 11l2-5a2 2 0 0 1 2-1h10a2 2 0 0 1 2 1l2 5z"/></svg>
-        </div>
-        <h3>Exterior Decontamination</h3>
-        <p>Removes dirt, grime, tar &amp; embedded pollutants from paint.</p>
-      </article>
-      <!-- 5 -->
-      <article class="svc reveal">
-        <div class="svc-num">05</div>
-        <div class="svc-icon">
-          <svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a4 4 0 0 1 4 4 4 4 0 0 1 0 8H8a4 4 0 0 1 0-8 4 4 0 0 1 4-4M6 16h12a3 3 0 0 1 0 6H6a3 3 0 0 1 0-6"/></svg>
-        </div>
-        <h3>Foam Wash &amp; Polishing</h3>
-        <p>Safe foam bath with swirl-free mirror polish finish.</p>
-      </article>
-      <!-- 6 -->
-      <article class="svc reveal">
-        <div class="svc-num">06</div>
-        <div class="svc-icon">
-          <svg viewBox="0 0 24 24"><path fill="currentColor" d="M4 7h3l1-2h8l1 2h3a1 1 0 0 1 1 1v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a1 1 0 0 1 1-1m8 3a4 4 0 1 0 0 8 4 4 0 0 0 0-8"/></svg>
-        </div>
-        <h3>Engine Bay Cleaning</h3>
-        <p>Clean &amp; degreased engine bay for performance and longevity.</p>
-      </article>
-      <!-- 7 -->
-      <article class="svc reveal">
-        <div class="svc-num">07</div>
-        <div class="svc-icon">
-          <svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 1 4 4v8c0 5 3.4 9.7 8 11 4.6-1.3 8-6 8-11V4z"/></svg>
-        </div>
-        <h3>Cabin Sanitization</h3>
-        <p>Kills 99.9% germs for a healthier, family-safe drive.</p>
-      </article>
-      <!-- 8 -->
-      <article class="svc reveal">
-        <div class="svc-num">08</div>
-        <div class="svc-icon">
-          <svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2m0 4a6 6 0 1 1-6 6 6 6 0 0 1 6-6"/></svg>
-        </div>
-        <h3>Glass &amp; Tyre Detailing</h3>
-        <p>Streak-free glass clarity &amp; rich black tyre dressing.</p>
+        <div class="pkg-strike">₹5,999</div>
+        <div class="pkg-note">After 50% introductory discount</div>
+        <ul>
+          <li>Full 23-step detox</li>
+          <li>Interior + Exterior + Engine bay</li>
+          <li>Premium liquid wax finish</li>
+          <li>Complete steam sanitization</li>
+        </ul>
+        <a href="#book" class="cta-btn ghost full">Book SUV / XUV</a>
       </article>
     </div>
   </section>
 
-  <!-- COMPARE -->
-  <section class="compare section" id="compare">
+  <!-- WHY US -->
+  <section class="why section" id="why">
     <div class="section-head reveal">
-      <span class="eyebrow">// The Difference</span>
-      <h2>Normal Wash <span class="vs">VS</span> <span class="accent">Car Detox</span></h2>
+      <span class="eyebrow">// Why Choose</span>
+      <h2>Why <span class="accent">Auto Detox Studio</span>?</h2>
       <div class="divider"></div>
     </div>
 
-    <div class="compare-grid">
-      <div class="cmp cmp-bad reveal">
-        <header>
-          <span class="tag">Normal Car Wash</span>
-          <span class="emoji">👎</span>
-        </header>
-        <ul>
-          <li>फक्त बाहेरून धुलाई</li>
-          <li>वरवरची सफाई</li>
-          <li>धूळ-माती तात्पुरती साफ</li>
-          <li>कोणतीही deep cleaning नाही</li>
-          <li>गुणवत्ता कमी, परिणाम अल्पकालीन</li>
-        </ul>
-        <footer>वरवरची सफाई</footer>
+    <div class="why-grid">
+      <div class="why-item reveal">
+        <div class="why-ic"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 12a4 4 0 1 0-4-4 4 4 0 0 0 4 4m0 2c-4 0-8 2-8 6v2h16v-2c0-4-4-6-8-6"/></svg></div>
+        <h4>Trained &amp; Expert Professionals</h4>
       </div>
-
-      <div class="cmp-vs" aria-hidden="true">
-        <span class="bolt">⚡</span>
-        <span>VS</span>
+      <div class="why-item reveal">
+        <div class="why-ic"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M6 2h12l4 6-10 14L2 8zm2.5 2L5 8h4zm3 0L9 8h6zm3 0-2 4h4zm3.5 0-1.5 4h4z"/></svg></div>
+        <h4>Premium Products &amp; Equipment</h4>
       </div>
-
-      <div class="cmp cmp-good reveal">
-        <header>
-          <span class="tag">Car Detox</span>
-          <span class="emoji">👍</span>
-        </header>
-        <ul>
-          <li>पूर्ण गाडीची deep क्लीनिंग</li>
-          <li>इंटीरियर + एक्सटीरियर + इंजिन</li>
-          <li>सॅनिटायझेशन &amp; बॅक्टेरिया रिमुव्हल</li>
-          <li>पेंट प्रोटेक्शन &amp; रिस्टोरेशन</li>
-          <li>प्रिमियम केअर, लॉंग लास्टिंग परिणाम</li>
-        </ul>
-        <footer>पूर्ण गाडीची premium deep treatment</footer>
+      <div class="why-item reveal">
+        <div class="why-ic"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M7 3c2 3 2 5 0 8s-2 5 0 8h2c-2-3-2-5 0-8s2-5 0-8zm6 0c2 3 2 5 0 8s-2 5 0 8h2c-2-3-2-5 0-8s2-5 0-8z"/></svg></div>
+        <h4>Advanced Steam Technology</h4>
+      </div>
+      <div class="why-item reveal">
+        <div class="why-ic"><svg viewBox="0 0 24 24"><path fill="currentColor" d="m9 16.2-3.5-3.5L4 14.2 9 19l11-11-1.5-1.5z"/></svg></div>
+        <h4>100% Satisfaction Guaranteed</h4>
+      </div>
+      <div class="why-item reveal">
+        <div class="why-ic"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M5 11 6.5 6.5C6.7 5.6 7.5 5 8.4 5h7.2c.9 0 1.7.6 1.9 1.5L19 11h1a1 1 0 0 1 1 1v6h-2v2h-2v-2H7v2H5v-2H3v-6a1 1 0 0 1 1-1zm2.5 5a1.5 1.5 0 1 0-1.5-1.5A1.5 1.5 0 0 0 7.5 16m9 0a1.5 1.5 0 1 0-1.5-1.5 1.5 1.5 0 0 0 1.5 1.5"/></svg></div>
+        <h4>Safe for All Cars</h4>
       </div>
     </div>
   </section>
@@ -302,29 +280,6 @@
 
     <div class="booking-wrap reveal">
       <div class="booking-frame">
-        <div class="frame-corner tl"></div>
-        <div class="frame-corner tr"></div>
-        <div class="frame-corner bl"></div>
-        <div class="frame-corner br"></div>
-
-        <!--
-          ============================================================
-          GOOGLE CALENDAR APPOINTMENT EMBED
-          ============================================================
-          Replace the iframe `src` below with your appointment schedule
-          embed URL from Google Calendar.
-
-          How to get it:
-          1. Open Google Calendar → click your Appointment Schedule.
-          2. Click "Share" → "Open booking page".
-          3. On the booking page, click the gear / "</> Embed" icon
-             (or use the schedule's "Share" → "Embed" option).
-          4. Copy the iframe `src` and paste it here.
-
-          The URL looks like:
-          https://calendar.google.com/calendar/appointments/schedules/AcZssZ.....?gv=true
-          ============================================================
-        -->
         <!-- Google Calendar Appointment Scheduling begin -->
         <iframe
           id="booking-iframe"
@@ -339,7 +294,7 @@
 
         <div class="booking-fallback" id="booking-fallback">
           <h3>Booking widget not configured yet</h3>
-          <p>Paste your Google Calendar Appointment Schedule URL inside <code>index.html</code> (search for <code>REPLACE_WITH_YOUR_SCHEDULE_ID</code>).</p>
+          <p>Paste your Google Calendar Appointment Schedule URL inside <code>index.html</code>.</p>
           <a class="cta-btn primary" href="https://calendar.google.com/calendar/u/0/appointments" target="_blank" rel="noopener">Open Google Appointments</a>
         </div>
       </div>
@@ -347,12 +302,13 @@
       <aside class="booking-side">
         <h3>What to expect</h3>
         <ul>
-          <li><b>Duration:</b> 2–6 hrs depending on package</li>
-          <li><b>Where:</b> Auto Detox Studio — drive-in</li>
+          <li><b>Duration:</b> 3–6 hrs depending on package</li>
+          <li><b>Where:</b> Near Rajyog Petrol Pump, Walhekarwadi Road, PCMC</li>
           <li><b>Confirmation:</b> Instant via Google Calendar</li>
           <li><b>Reschedule:</b> Free, anytime from email</li>
         </ul>
-        <a href="tel:+917744028466" class="cta-btn ghost full">📞 Or call us directly</a>
+        <a href="tel:+917744028466" class="cta-btn primary full">📞 Call +91 77440 28466</a>
+        <a href="https://wa.me/917744028466" target="_blank" rel="noopener" class="cta-btn ghost full">💬 WhatsApp Us</a>
       </aside>
     </div>
   </section>
@@ -370,18 +326,23 @@
             <small>STUDIO — INDIA'S FIRST</small>
           </span>
         </div>
-        <p class="muted">We don't wash, we detox.<br/>Premium care. Long-lasting results.</p>
+        <p class="muted">Step in. Feel the difference.<br/>Drive clean. Drive healthy.</p>
       </div>
 
       <div>
         <h4>Visit</h4>
-        <p class="muted">Auto Detox Studio<br/>Add address line 1<br/>City, PIN</p>
+        <p class="muted">
+          Auto Detox Studio<br/>
+          Near Rajyog Petrol Pump,<br/>
+          Walhekarwadi Road, PCMC
+        </p>
       </div>
 
       <div>
         <h4>Contact</h4>
         <p class="muted">
           <a href="tel:+917744028466">+91 77440 28466</a><br/>
+          <a href="tel:+917020364562">+91 70203 64562</a><br/>
           <a href="mailto:autodetoxstudio@gmail.com">autodetoxstudio@gmail.com</a>
         </p>
       </div>
@@ -389,23 +350,23 @@
       <div>
         <h4>Follow</h4>
         <div class="socials">
-          <a href="#" aria-label="Instagram">IG</a>
-          <a href="#" aria-label="Facebook">FB</a>
-          <a href="#" aria-label="YouTube">YT</a>
-          <a href="#" aria-label="WhatsApp">WA</a>
+          <a href="https://instagram.com/autodetoxstudio" target="_blank" rel="noopener" aria-label="Instagram">IG</a>
+          <a href="https://facebook.com/autodetoxstudio" target="_blank" rel="noopener" aria-label="Facebook">FB</a>
+          <a href="https://wa.me/917744028466" target="_blank" rel="noopener" aria-label="WhatsApp">WA</a>
+          <a href="https://www.autodetoxstudio.com" target="_blank" rel="noopener" aria-label="Website">WEB</a>
         </div>
       </div>
     </div>
 
     <div class="footer-bar">
       <span>© <span id="year"></span> Auto Detox Studio. All rights reserved.</span>
-      <span class="tag-line">WE DON'T WASH, <b>WE DETOX.</b></span>
+      <span class="tag-line">STEP IN · FEEL THE DIFFERENCE · <b>DRIVE HEALTHY</b></span>
     </div>
   </footer>
 
-  <a href="#book" class="float-cta" aria-label="Book Detox">
-    <span>BOOK</span>
-    <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M5 12h12.2l-4.6-4.6L14 6l7 6-7 6-1.4-1.4 4.6-4.6H5z"/></svg>
+  <a href="https://wa.me/917744028466" target="_blank" rel="noopener" class="float-cta" aria-label="WhatsApp Auto Detox Studio">
+    <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M20 4A10 10 0 0 0 3.6 15.8L2 22l6.3-1.6A10 10 0 1 0 20 4M12 20a8 8 0 0 1-4.1-1.1l-.3-.2-3.7 1 1-3.6-.2-.3A8 8 0 1 1 12 20m4.6-6c-.3-.1-1.5-.7-1.7-.8s-.4-.1-.5.1-.6.8-.8 1-.3.1-.5 0a6.6 6.6 0 0 1-3.3-2.9c-.3-.4.3-.4.8-1.3.1-.2 0-.3 0-.4l-.7-1.7c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 0 0-.7.3 2.9 2.9 0 0 0-.9 2.1 5 5 0 0 0 1 2.7 11.4 11.4 0 0 0 4.4 3.9c2.6 1 2.6.7 3.1.7a2.7 2.7 0 0 0 1.7-1.2 2.1 2.1 0 0 0 .1-1.2s-.4-.2-.6-.3"/></svg>
+    <span>Chat</span>
   </a>
 
   <script src="js/main.js" defer></script>
