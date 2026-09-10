@@ -110,3 +110,13 @@ In Google Calendar → your **Appointment Schedule settings**, ensure:
 - Pure HTML/CSS/JS — no dependencies, no build, fully static (deploys to Netlify / Vercel / GitHub Pages / shared hosting in seconds).
 - Respects `prefers-reduced-motion` for accessibility.
 - Works offline except for the Google Fonts and the Google Calendar iframe.
+
+
+## Interactive redesign updates
+- Hero now cycles through 3 showcase images.
+- All booking CTAs open the existing multi-step booking form in a modal.
+- Service Finder includes vehicle, concern and priority inputs.
+- Ceramic/Graphene headings are centered; the Why Choose image has been removed.
+- Gallery supports random ordering, photo/video filters, lightbox preview and shuffle. Instagram is no longer used for the View Full Gallery action.
+- Admin panel now includes **Gallery & Videos** uploads and **Enquiries & Popup** management.
+- Run `database/schema.sql` again (or apply its new tables) before using gallery/enquiry admin features.
