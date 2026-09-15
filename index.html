@@ -1,122 +1,3 @@
-<?php
-require __DIR__ . '/includes/bootstrap.php';
-
-$packages = $pdo->query('SELECT * FROM packages ORDER BY display_order ASC')->fetchAll();
-$flash = get_flash();
-$today = date('Y-m-d');
-$timeSlots = ['09:00 AM', '11:00 AM', '01:00 PM', '03:00 PM', '05:00 PM'];
-
-$processSteps = [
-  'Premium Touchless Foam Wash', 'Complete Interior Deep Cleaning', 'Full Steam Sanitization',
-  'AC Vent Cleaning', 'Underbody Cleaning', 'Engine Bay Cleaning', 'Boot Space Cleaning',
-  'Interior Plastic Restoration', 'Premium Plastic Dresser Application', 'Dashboard & Console Detailing',
-  'Seat & Carpet Deep Cleaning', 'Door Pad Cleaning', 'Roof Lining Cleaning', 'Floor Mat Cleaning',
-  'Odour Removal Treatment', 'Glass Cleaning & Polishing', 'Tyre & Alloy Cleaning', 'Tyre Dressing',
-  'Exterior Plastic Restoration', 'Premium Liquid Wax Application', 'Paint Surface Decontamination',
-  'Gap & Crevice Cleaning', 'Sanitization Treatment', 'Final Quality Inspection',
-];
-
-$services = [
-  [
-    'id' => 'detox', 'title' => 'Detox', 'icon' => 'droplet',
-    'desc' => 'Complete touchless wash, sanitization &amp; interior-exterior detox for a showroom-fresh feel.',
-    'pricing' => [
-      ['label' => 'Hatchback', 'price' => 1999],
-      ['label' => 'Sedan / Compact SUV', 'price' => 2499],
-      ['label' => 'SUV / XUV', 'price' => 2999],
-    ],
-    'cta' => ['type' => 'book', 'label' => 'Book Now'],
-  ],
-  [
-    'id' => 'rubbing', 'title' => 'Rubbing &amp; Polishing', 'icon' => 'shine',
-    'desc' => 'Restore paint. Reveal the shine — swirl-free gloss correction.',
-    'pricing' => [
-      ['label' => 'Hatchback', 'price' => 2499],
-      ['label' => 'Sedan / Compact SUV', 'price' => 2999],
-      ['label' => 'SUV / XUV', 'price' => 3499],
-    ],
-    'cta' => ['type' => 'book', 'label' => 'Book Now'],
-  ],
-  [
-    'id' => 'glass', 'title' => 'Glass Buffing', 'icon' => 'glass',
-    'desc' => 'Crystal-clear visibility with a full 6-glass buffing treatment.',
-    'pricing' => [
-      ['label' => 'All 6 Glasses', 'price' => 2199],
-    ],
-    'cta' => ['type' => 'book', 'label' => 'Book Now'],
-  ],
-  [
-    'id' => 'ceramic', 'title' => 'Ceramic Coating', 'icon' => 'shield',
-    'flag' => '2 Yrs Warranty',
-    'desc' => 'High-gloss, water &amp; dirt repellent armor with long-lasting protection.',
-    'pricing' => [
-      ['label' => 'Bike Ceramic Coating', 'price' => 3999, 'onwards' => true],
-      ['label' => 'Car Ceramic Coating', 'price' => 10999, 'onwards' => true],
-    ],
-    'cta' => ['type' => 'view', 'label' => 'View Details', 'href' => '#ceramic-coating'],
-  ],
-  [
-    'id' => 'graphene', 'title' => 'Graphene Coating', 'icon' => 'spark',
-    'desc' => 'Next-generation protection with maximum performance &amp; durability.',
-    'pricing' => [
-      ['label' => 'Bike Graphene Coating', 'quote' => true],
-      ['label' => 'Car Graphene Coating', 'quote' => true],
-    ],
-    'cta' => ['type' => 'view', 'label' => 'View Details', 'href' => '#graphene-coating'],
-  ],
-  [
-    'id' => 'denting', 'title' => 'Denting &amp; Painting', 'icon' => 'wrench',
-    'desc' => 'Dent-free panels &amp; factory-match paint, quoted after inspection.',
-    'pricing' => [
-      ['label' => 'All Vehicles', 'quote' => true, 'note' => 'Get Quote on Call'],
-    ],
-    'cta' => ['type' => 'quote', 'label' => 'Get Quote'],
-  ],
-  [
-    'id' => 'underbody', 'title' => 'Underbody Coating', 'icon' => 'engine',
-    'desc' => 'Anti-rust, anti-corrosion shield against monsoon splashes &amp; debris.',
-    'pricing' => [
-      ['label' => 'Hatchback', 'price' => 2499],
-      ['label' => 'Sedan / Compact SUV', 'price' => 2999],
-      ['label' => 'SUV / XUV', 'price' => 3499],
-    ],
-    'cta' => ['type' => 'book', 'label' => 'Book Now'],
-  ],
-];
-
-$fallbackGallery = [
-  ['img' => 'https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=1000&q=85', 'label' => 'Showroom Shine', 'sub' => 'Exterior Detail', 'type' => 'image'],
-  ['img' => 'https://images.unsplash.com/photo-1592840062661-a5a7f78e2056?auto=format&fit=crop&w=1000&q=85', 'label' => 'Exterior Detail', 'sub' => 'Foam & Polish', 'type' => 'image'],
-  ['img' => 'https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&fit=crop&w=1000&q=85', 'label' => 'Studio Portfolio', 'sub' => 'Full Detox', 'type' => 'image'],
-  ['img' => 'https://images.unsplash.com/photo-1518987048-93e29699e79a?auto=format&fit=crop&w=1000&q=85', 'label' => 'Studio Session', 'sub' => 'Full Detox', 'type' => 'image'],
-  ['img' => 'https://images.unsplash.com/photo-1519245659620-e859806a8d3b?auto=format&fit=crop&w=1000&q=85', 'label' => 'Detailing Bay', 'sub' => 'Behind The Scenes', 'type' => 'image'],
-  ['img' => 'https://images.unsplash.com/photo-1547038577-da80abbc4f19?auto=format&fit=crop&w=1000&q=85', 'label' => 'Weekend Ready', 'sub' => 'Paint Correction', 'type' => 'image'],
-];
-try {
-  $galleryItems = $pdo->query("SELECT id, media_type AS type, file_path AS img, title AS label, subtitle AS sub FROM gallery_media WHERE is_active=1 ORDER BY RAND() LIMIT 18")->fetchAll();
-} catch (Throwable $e) {
-  $galleryItems = [];
-}
-if (!$galleryItems) $galleryItems = $fallbackGallery;
-shuffle($galleryItems);
-
-try {
-  $siteSettings = $pdo->query("SELECT setting_key, setting_value FROM site_settings")->fetchAll(PDO::FETCH_KEY_PAIR);
-} catch (Throwable $e) {
-  $siteSettings = [];
-}
-$enquiryEnabled = ($siteSettings['enquiry_popup_enabled'] ?? '1') === '1';
-$enquiryTitle = $siteSettings['enquiry_popup_title'] ?? 'Need help choosing the right service?';
-$enquiryMessage = $siteSettings['enquiry_popup_message'] ?? 'Leave your details and our team will call you with the right recommendation.';
-
-$reviews = [
-  ['name' => 'Rohan Kulkarni', 'text' => 'The 23-step process is no gimmick — my Creta genuinely looked showroom-new. The steam sanitization got rid of a smell I\'d given up on.', 'img' => 24],
-  ['name' => 'Ananya Deshpande', 'text' => 'Booked the Sedan package for my City. Professional team, spotless interior, and they finished exactly on time. Worth every rupee.', 'img' => 47],
-  ['name' => 'Vikram Shah', 'text' => 'Best detailing studio in PCMC, hands down. The engine bay and underbody cleaning are things other car washes just skip.', 'img' => 33],
-  ['name' => 'Sneha Patil', 'text' => 'My Swift\'s paint looks glossier than the day I bought it. The liquid wax finish is next level. Already booked my next slot.', 'img' => 45],
-  ['name' => 'Aditya Rane', 'text' => 'Booked the SUV package for my XUV700 — engine bay, underbody, interior, everything covered. Transparent pricing, no upsell pressure.', 'img' => 15],
-];
-?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -147,25 +28,23 @@ $reviews = [
   <div class="cursor-glow" id="cursorGlow"></div>
 
   <!-- QUICK ENQUIRY POPUP -->
-  <?php if ($enquiryEnabled): ?>
-  <div class="enquiry-overlay" id="enquiryOverlay" role="dialog" aria-modal="true" aria-labelledby="enquiryTitle">
+    <div class="enquiry-overlay" id="enquiryOverlay" role="dialog" aria-modal="true" aria-labelledby="enquiryTitle">
     <div class="enquiry-modal">
       <button type="button" class="enquiry-close" id="enquiryClose" aria-label="Close enquiry">&times;</button>
       <span class="eyebrow">// Quick Enquiry</span>
-      <h3 id="enquiryTitle"><?= h($enquiryTitle) ?></h3>
-      <p><?= h($enquiryMessage) ?></p>
-      <form action="enquiry.php" method="post" class="enquiry-form">
-        <input type="hidden" name="csrf_token" value="<?= h(csrf_token()) ?>" />
+      <h3 id="enquiryTitle">Need help choosing the right service?</h3>
+      <p>Leave your details and our team will call you with the right recommendation.</p>
+      <form action="javascript:void(0)" method="post" class="enquiry-form">
+        <input type="hidden" name="csrf_token" value="" />
         <div class="bf-row"><label for="eq-name">Name *</label><input id="eq-name" name="name" required maxlength="120" placeholder="Your name" /></div>
         <div class="bf-row"><label for="eq-phone">Phone *</label><input id="eq-phone" name="phone" required pattern="[6-9][0-9]{9}" maxlength="10" placeholder="10-digit mobile number" /></div>
-        <div class="bf-row"><label for="eq-service">Service</label><select id="eq-service" name="service"><option value="">Select a service</option><?php foreach ($services as $svc): ?><option><?= h(strip_tags($svc['title'])) ?></option><?php endforeach; ?></select></div>
+        <div class="bf-row"><label for="eq-service">Service</label><select id="eq-service" name="service"><option value="">Select a service</option><option>Detox</option><option>Rubbing &amp;amp; Polishing</option><option>Glass Buffing</option><option>Ceramic Coating</option><option>Graphene Coating</option><option>Denting &amp;amp; Painting</option><option>Underbody Coating</option></select></div>
         <div class="bf-row"><label for="eq-message">Message</label><textarea id="eq-message" name="message" rows="3" maxlength="500" placeholder="Tell us what your car needs..."></textarea></div>
         <button class="btn btn-primary btn-block" type="submit">Send Enquiry</button>
       </form>
     </div>
   </div>
-  <?php endif; ?>
-
+  
   <!-- NAV -->
   <header class="nav" id="nav">
     <a href="#top" class="brand" aria-label="Auto Detox Studio">
@@ -245,14 +124,11 @@ $reviews = [
   <!-- SUB-STRIP / PROCESS MARQUEE -->
   <div class="sub-strip" id="process">
     <div class="sub-strip-track">
-      <?php for ($i = 0; $i < 2; $i++): ?>
-        <span>
-          <?php foreach ($processSteps as $idx => $step): ?>
-            <b><?= str_pad((string) ($idx + 1), 2, '0', STR_PAD_LEFT) ?></b> <?= h($step) ?><?= $idx < count($processSteps) - 1 ? ' &nbsp;•&nbsp; ' : '' ?>
-          <?php endforeach; ?>
-        </span>
-      <?php endfor; ?>
-    </div>
+              <span>
+                      <b>01</b> Premium Touchless Foam Wash &nbsp;•&nbsp;                       <b>02</b> Complete Interior Deep Cleaning &nbsp;•&nbsp;                       <b>03</b> Full Steam Sanitization &nbsp;•&nbsp;                       <b>04</b> AC Vent Cleaning &nbsp;•&nbsp;                       <b>05</b> Underbody Cleaning &nbsp;•&nbsp;                       <b>06</b> Engine Bay Cleaning &nbsp;•&nbsp;                       <b>07</b> Boot Space Cleaning &nbsp;•&nbsp;                       <b>08</b> Interior Plastic Restoration &nbsp;•&nbsp;                       <b>09</b> Premium Plastic Dresser Application &nbsp;•&nbsp;                       <b>10</b> Dashboard &amp; Console Detailing &nbsp;•&nbsp;                       <b>11</b> Seat &amp; Carpet Deep Cleaning &nbsp;•&nbsp;                       <b>12</b> Door Pad Cleaning &nbsp;•&nbsp;                       <b>13</b> Roof Lining Cleaning &nbsp;•&nbsp;                       <b>14</b> Floor Mat Cleaning &nbsp;•&nbsp;                       <b>15</b> Odour Removal Treatment &nbsp;•&nbsp;                       <b>16</b> Glass Cleaning &amp; Polishing &nbsp;•&nbsp;                       <b>17</b> Tyre &amp; Alloy Cleaning &nbsp;•&nbsp;                       <b>18</b> Tyre Dressing &nbsp;•&nbsp;                       <b>19</b> Exterior Plastic Restoration &nbsp;•&nbsp;                       <b>20</b> Premium Liquid Wax Application &nbsp;•&nbsp;                       <b>21</b> Paint Surface Decontamination &nbsp;•&nbsp;                       <b>22</b> Gap &amp; Crevice Cleaning &nbsp;•&nbsp;                       <b>23</b> Sanitization Treatment &nbsp;•&nbsp;                       <b>24</b> Final Quality Inspection                  </span>
+              <span>
+                      <b>01</b> Premium Touchless Foam Wash &nbsp;•&nbsp;                       <b>02</b> Complete Interior Deep Cleaning &nbsp;•&nbsp;                       <b>03</b> Full Steam Sanitization &nbsp;•&nbsp;                       <b>04</b> AC Vent Cleaning &nbsp;•&nbsp;                       <b>05</b> Underbody Cleaning &nbsp;•&nbsp;                       <b>06</b> Engine Bay Cleaning &nbsp;•&nbsp;                       <b>07</b> Boot Space Cleaning &nbsp;•&nbsp;                       <b>08</b> Interior Plastic Restoration &nbsp;•&nbsp;                       <b>09</b> Premium Plastic Dresser Application &nbsp;•&nbsp;                       <b>10</b> Dashboard &amp; Console Detailing &nbsp;•&nbsp;                       <b>11</b> Seat &amp; Carpet Deep Cleaning &nbsp;•&nbsp;                       <b>12</b> Door Pad Cleaning &nbsp;•&nbsp;                       <b>13</b> Roof Lining Cleaning &nbsp;•&nbsp;                       <b>14</b> Floor Mat Cleaning &nbsp;•&nbsp;                       <b>15</b> Odour Removal Treatment &nbsp;•&nbsp;                       <b>16</b> Glass Cleaning &amp; Polishing &nbsp;•&nbsp;                       <b>17</b> Tyre &amp; Alloy Cleaning &nbsp;•&nbsp;                       <b>18</b> Tyre Dressing &nbsp;•&nbsp;                       <b>19</b> Exterior Plastic Restoration &nbsp;•&nbsp;                       <b>20</b> Premium Liquid Wax Application &nbsp;•&nbsp;                       <b>21</b> Paint Surface Decontamination &nbsp;•&nbsp;                       <b>22</b> Gap &amp; Crevice Cleaning &nbsp;•&nbsp;                       <b>23</b> Sanitization Treatment &nbsp;•&nbsp;                       <b>24</b> Final Quality Inspection                  </span>
+          </div>
   </div>
 
   <!-- STATS -->
@@ -315,48 +191,172 @@ $reviews = [
     </div>
 
     <div class="services-grid">
-      <?php foreach ($services as $i => $s): ?>
-        <article class="svc-card reveal" style="--i:<?= $i ?>" id="svc-<?= h($s['id']) ?>">
+              <article class="svc-card reveal" style="--i:0" id="svc-detox">
           <div class="svc-top">
             <div class="svc-ic">
-              <?php if ($s['icon'] === 'droplet'): ?><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2c-3 5-6 8-6 12a6 6 0 0 0 12 0c0-4-3-7-6-12"/></svg>
-              <?php elseif ($s['icon'] === 'engine'): ?><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 8a4 4 0 1 0 4 4 4 4 0 0 0-4-4m0 2a2 2 0 1 1-2 2 2 2 0 0 1 2-2m-1-6h2v2h-2zm0 16h2v2h-2zM3 11h2v2H3zm16 0h2v2h-2zM5.6 5.6l1.4 1.4-1.4 1.4-1.4-1.4zm11 11 1.4 1.4-1.4 1.4-1.4-1.4zm0-11 1.4-1.4 1.4 1.4-1.4 1.4zm-11 11 1.4-1.4 1.4 1.4-1.4 1.4z"/></svg>
-              <?php elseif ($s['icon'] === 'shine'): ?><svg viewBox="0 0 24 24"><path fill="currentColor" d="M11 2c1.1 4.4 3.2 6.5 7.6 7.6-4.4 1.1-6.5 3.2-7.6 7.6-1.1-4.4-3.2-6.5-7.6-7.6C7.8 8.5 9.9 6.4 11 2m7.5 12.5c.5 2 1.5 3 3.5 3.5-2 .5-3 1.5-3.5 3.5-.5-2-1.5-3-3.5-3.5 2-.5 3-1.5 3.5-3.5"/></svg>
-              <?php elseif ($s['icon'] === 'shield'): ?><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2 4 5v6c0 5 3.4 9.7 8 11 4.6-1.3 8-6 8-11V5z"/></svg>
-              <?php elseif ($s['icon'] === 'glass'): ?><svg viewBox="0 0 24 24"><path fill="currentColor" d="M4 4h16v16H4V4m2 2v5h5V6H6m7 0v5h5V6h-5M6 13v5h5v-5H6m7 0v5h5v-5h-5"/></svg>
-              <?php elseif ($s['icon'] === 'wrench'): ?><svg viewBox="0 0 24 24"><path fill="currentColor" d="M22 6.4a5.5 5.5 0 0 1-7.3 5.2l-6.6 6.6a2 2 0 1 1-2.8-2.8l6.6-6.6A5.5 5.5 0 0 1 19.4 2a5.4 5.4 0 0 1 2.2.5l-3.9 3.9 1.7 1.7L23.4 4.2c.3.7.5 1.4.5 2.2z"/></svg>
-              <?php else: ?><svg viewBox="0 0 24 24"><path fill="currentColor" d="m12 2 2.2 6.8H21l-5.6 4.2 2.1 6.8L12 15.8 6.5 19.8l2.1-6.8L3 8.8h6.8z"/></svg>
-              <?php endif; ?>
-            </div>
-            <?php if (!empty($s['flag'])): ?><span class="svc-flag"><?= h($s['flag']) ?></span><?php endif; ?>
-          </div>
+              <svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2c-3 5-6 8-6 12a6 6 0 0 0 12 0c0-4-3-7-6-12"/></svg>
+                          </div>
+                      </div>
 
-          <h3 class="svc-title"><?= $s['title'] ?></h3>
-          <p class="svc-desc"><?= $s['desc'] ?></p>
+          <h3 class="svc-title">Detox</h3>
+          <p class="svc-desc">Complete touchless wash, sanitization &amp; interior-exterior detox for a showroom-fresh feel.</p>
 
           <div class="svc-pricing">
-            <?php foreach ($s['pricing'] as $row): ?>
-              <div class="svc-price-row<?= !empty($row['quote']) ? ' quote' : '' ?>">
-                <span><?= h($row['label']) ?></span>
-                <?php if (!empty($row['quote'])): ?>
-                  <strong><?= h($row['note'] ?? 'Get Quote') ?></strong>
-                <?php else: ?>
-                  <strong>₹<?= number_format($row['price']) ?><?php if (!empty($row['onwards'])): ?> <small>onwards</small><?php endif; ?></strong>
-                <?php endif; ?>
-              </div>
-            <?php endforeach; ?>
-          </div>
+                          <div class="svc-price-row">
+                <span>Hatchback</span>
+                                  <strong>₹1,999</strong>
+                              </div>
+                          <div class="svc-price-row">
+                <span>Sedan / Compact SUV</span>
+                                  <strong>₹2,499</strong>
+                              </div>
+                          <div class="svc-price-row">
+                <span>SUV / XUV</span>
+                                  <strong>₹2,999</strong>
+                              </div>
+                      </div>
 
-          <?php if ($s['cta']['type'] === 'book'): ?>
-            <span class="magnetic svc-cta"><a href="#book" class="btn btn-outline-gold btn-sm btn-block js-book-service" data-pkg-preselect="1"><?= h($s['cta']['label']) ?></a></span>
-          <?php elseif ($s['cta']['type'] === 'view'): ?>
-            <span class="magnetic svc-cta"><a href="<?= h($s['cta']['href']) ?>" class="btn btn-outline-gold btn-sm btn-block"><?= h($s['cta']['label']) ?></a></span>
-          <?php else: ?>
-            <span class="magnetic svc-cta"><a href="https://wa.me/917744028466?text=<?= rawurlencode('Hi, I would like a quote for ' . html_entity_decode(strip_tags($s['title'])) . '.') ?>" target="_blank" rel="noopener" class="btn btn-offer btn-sm btn-block"><?= h($s['cta']['label']) ?></a></span>
-          <?php endif; ?>
-        </article>
-      <?php endforeach; ?>
-    </div>
+                      <span class="magnetic svc-cta"><a href="#book" class="btn btn-outline-gold btn-sm btn-block js-book-service" data-pkg-preselect="1">Book Now</a></span>
+                  </article>
+              <article class="svc-card reveal" style="--i:1" id="svc-rubbing">
+          <div class="svc-top">
+            <div class="svc-ic">
+              <svg viewBox="0 0 24 24"><path fill="currentColor" d="M11 2c1.1 4.4 3.2 6.5 7.6 7.6-4.4 1.1-6.5 3.2-7.6 7.6-1.1-4.4-3.2-6.5-7.6-7.6C7.8 8.5 9.9 6.4 11 2m7.5 12.5c.5 2 1.5 3 3.5 3.5-2 .5-3 1.5-3.5 3.5-.5-2-1.5-3-3.5-3.5 2-.5 3-1.5 3.5-3.5"/></svg>
+                          </div>
+                      </div>
+
+          <h3 class="svc-title">Rubbing &amp; Polishing</h3>
+          <p class="svc-desc">Restore paint. Reveal the shine — swirl-free gloss correction.</p>
+
+          <div class="svc-pricing">
+                          <div class="svc-price-row">
+                <span>Hatchback</span>
+                                  <strong>₹2,499</strong>
+                              </div>
+                          <div class="svc-price-row">
+                <span>Sedan / Compact SUV</span>
+                                  <strong>₹2,999</strong>
+                              </div>
+                          <div class="svc-price-row">
+                <span>SUV / XUV</span>
+                                  <strong>₹3,499</strong>
+                              </div>
+                      </div>
+
+                      <span class="magnetic svc-cta"><a href="#book" class="btn btn-outline-gold btn-sm btn-block js-book-service" data-pkg-preselect="1">Book Now</a></span>
+                  </article>
+              <article class="svc-card reveal" style="--i:2" id="svc-glass">
+          <div class="svc-top">
+            <div class="svc-ic">
+              <svg viewBox="0 0 24 24"><path fill="currentColor" d="M4 4h16v16H4V4m2 2v5h5V6H6m7 0v5h5V6h-5M6 13v5h5v-5H6m7 0v5h5v-5h-5"/></svg>
+                          </div>
+                      </div>
+
+          <h3 class="svc-title">Glass Buffing</h3>
+          <p class="svc-desc">Crystal-clear visibility with a full 6-glass buffing treatment.</p>
+
+          <div class="svc-pricing">
+                          <div class="svc-price-row">
+                <span>All 6 Glasses</span>
+                                  <strong>₹2,199</strong>
+                              </div>
+                      </div>
+
+                      <span class="magnetic svc-cta"><a href="#book" class="btn btn-outline-gold btn-sm btn-block js-book-service" data-pkg-preselect="1">Book Now</a></span>
+                  </article>
+              <article class="svc-card reveal" style="--i:3" id="svc-ceramic">
+          <div class="svc-top">
+            <div class="svc-ic">
+              <svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2 4 5v6c0 5 3.4 9.7 8 11 4.6-1.3 8-6 8-11V5z"/></svg>
+                          </div>
+            <span class="svc-flag">2 Yrs Warranty</span>          </div>
+
+          <h3 class="svc-title">Ceramic Coating</h3>
+          <p class="svc-desc">High-gloss, water &amp; dirt repellent armor with long-lasting protection.</p>
+
+          <div class="svc-pricing">
+                          <div class="svc-price-row">
+                <span>Bike Ceramic Coating</span>
+                                  <strong>₹3,999 <small>onwards</small></strong>
+                              </div>
+                          <div class="svc-price-row">
+                <span>Car Ceramic Coating</span>
+                                  <strong>₹10,999 <small>onwards</small></strong>
+                              </div>
+                      </div>
+
+                      <span class="magnetic svc-cta"><a href="#ceramic-coating" class="btn btn-outline-gold btn-sm btn-block">View Details</a></span>
+                  </article>
+              <article class="svc-card reveal" style="--i:4" id="svc-graphene">
+          <div class="svc-top">
+            <div class="svc-ic">
+              <svg viewBox="0 0 24 24"><path fill="currentColor" d="m12 2 2.2 6.8H21l-5.6 4.2 2.1 6.8L12 15.8 6.5 19.8l2.1-6.8L3 8.8h6.8z"/></svg>
+                          </div>
+                      </div>
+
+          <h3 class="svc-title">Graphene Coating</h3>
+          <p class="svc-desc">Next-generation protection with maximum performance &amp; durability.</p>
+
+          <div class="svc-pricing">
+                          <div class="svc-price-row quote">
+                <span>Bike Graphene Coating</span>
+                                  <strong>Get Quote</strong>
+                              </div>
+                          <div class="svc-price-row quote">
+                <span>Car Graphene Coating</span>
+                                  <strong>Get Quote</strong>
+                              </div>
+                      </div>
+
+                      <span class="magnetic svc-cta"><a href="#graphene-coating" class="btn btn-outline-gold btn-sm btn-block">View Details</a></span>
+                  </article>
+              <article class="svc-card reveal" style="--i:5" id="svc-denting">
+          <div class="svc-top">
+            <div class="svc-ic">
+              <svg viewBox="0 0 24 24"><path fill="currentColor" d="M22 6.4a5.5 5.5 0 0 1-7.3 5.2l-6.6 6.6a2 2 0 1 1-2.8-2.8l6.6-6.6A5.5 5.5 0 0 1 19.4 2a5.4 5.4 0 0 1 2.2.5l-3.9 3.9 1.7 1.7L23.4 4.2c.3.7.5 1.4.5 2.2z"/></svg>
+                          </div>
+                      </div>
+
+          <h3 class="svc-title">Denting &amp; Painting</h3>
+          <p class="svc-desc">Dent-free panels &amp; factory-match paint, quoted after inspection.</p>
+
+          <div class="svc-pricing">
+                          <div class="svc-price-row quote">
+                <span>All Vehicles</span>
+                                  <strong>Get Quote on Call</strong>
+                              </div>
+                      </div>
+
+                      <span class="magnetic svc-cta"><a href="https://wa.me/917744028466?text=Hi%2C%20I%20would%20like%20a%20quote%20for%20Denting%20%26%20Painting." target="_blank" rel="noopener" class="btn btn-offer btn-sm btn-block">Get Quote</a></span>
+                  </article>
+              <article class="svc-card reveal" style="--i:6" id="svc-underbody">
+          <div class="svc-top">
+            <div class="svc-ic">
+              <svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 8a4 4 0 1 0 4 4 4 4 0 0 0-4-4m0 2a2 2 0 1 1-2 2 2 2 0 0 1 2-2m-1-6h2v2h-2zm0 16h2v2h-2zM3 11h2v2H3zm16 0h2v2h-2zM5.6 5.6l1.4 1.4-1.4 1.4-1.4-1.4zm11 11 1.4 1.4-1.4 1.4-1.4-1.4zm0-11 1.4-1.4 1.4 1.4-1.4 1.4zm-11 11 1.4-1.4 1.4 1.4-1.4 1.4z"/></svg>
+                          </div>
+                      </div>
+
+          <h3 class="svc-title">Underbody Coating</h3>
+          <p class="svc-desc">Anti-rust, anti-corrosion shield against monsoon splashes &amp; debris.</p>
+
+          <div class="svc-pricing">
+                          <div class="svc-price-row">
+                <span>Hatchback</span>
+                                  <strong>₹2,499</strong>
+                              </div>
+                          <div class="svc-price-row">
+                <span>Sedan / Compact SUV</span>
+                                  <strong>₹2,999</strong>
+                              </div>
+                          <div class="svc-price-row">
+                <span>SUV / XUV</span>
+                                  <strong>₹3,499</strong>
+                              </div>
+                      </div>
+
+                      <span class="magnetic svc-cta"><a href="#book" class="btn btn-outline-gold btn-sm btn-block js-book-service" data-pkg-preselect="1">Book Now</a></span>
+                  </article>
+          </div>
   </section>
 
   <!-- CONFIGURATOR -->
@@ -565,17 +565,31 @@ $reviews = [
 
     <div class="gallery-track-wrap reveal" id="galleryTrackWrap">
       <div class="gallery-track" id="galleryTrack">
-        <?php foreach ($galleryItems as $g): ?>
-          <div class="gallery-item" data-type="<?= h($g['type'] ?? 'image') ?>" data-src="<?= h($g['img']) ?>" data-title="<?= h(strip_tags($g['label'])) ?>">
-            <?php if (($g['type'] ?? 'image') === 'video'): ?>
-              <video src="<?= h($g['img']) ?>" muted playsinline preload="metadata"></video><span class="gallery-play">▶</span>
-            <?php else: ?>
-              <img src="<?= h($g['img']) ?>" alt="<?= h(strip_tags($g['label'])) ?>" draggable="false" loading="lazy" />
-            <?php endif; ?>
-            <div class="gallery-overlay"><small><?= h(strip_tags($g['sub'] ?? '')) ?></small><strong><?= h(strip_tags($g['label'] ?? 'Gallery')) ?></strong></div>
+                  <div class="gallery-item" data-type="image" data-src="https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&amp;fit=crop&amp;w=1000&amp;q=85" data-title="Showroom Shine">
+                          <img src="https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&amp;fit=crop&amp;w=1000&amp;q=85" alt="Showroom Shine" draggable="false" loading="lazy" />
+                        <div class="gallery-overlay"><small>Exterior Detail</small><strong>Showroom Shine</strong></div>
           </div>
-        <?php endforeach; ?>
-      </div>
+                  <div class="gallery-item" data-type="image" data-src="https://images.unsplash.com/photo-1592840062661-a5a7f78e2056?auto=format&amp;fit=crop&amp;w=1000&amp;q=85" data-title="Exterior Detail">
+                          <img src="https://images.unsplash.com/photo-1592840062661-a5a7f78e2056?auto=format&amp;fit=crop&amp;w=1000&amp;q=85" alt="Exterior Detail" draggable="false" loading="lazy" />
+                        <div class="gallery-overlay"><small>Foam &amp; Polish</small><strong>Exterior Detail</strong></div>
+          </div>
+                  <div class="gallery-item" data-type="image" data-src="https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&amp;fit=crop&amp;w=1000&amp;q=85" data-title="Studio Portfolio">
+                          <img src="https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&amp;fit=crop&amp;w=1000&amp;q=85" alt="Studio Portfolio" draggable="false" loading="lazy" />
+                        <div class="gallery-overlay"><small>Full Detox</small><strong>Studio Portfolio</strong></div>
+          </div>
+                  <div class="gallery-item" data-type="image" data-src="https://images.unsplash.com/photo-1518987048-93e29699e79a?auto=format&amp;fit=crop&amp;w=1000&amp;q=85" data-title="Studio Session">
+                          <img src="https://images.unsplash.com/photo-1518987048-93e29699e79a?auto=format&amp;fit=crop&amp;w=1000&amp;q=85" alt="Studio Session" draggable="false" loading="lazy" />
+                        <div class="gallery-overlay"><small>Full Detox</small><strong>Studio Session</strong></div>
+          </div>
+                  <div class="gallery-item" data-type="image" data-src="https://images.unsplash.com/photo-1519245659620-e859806a8d3b?auto=format&amp;fit=crop&amp;w=1000&amp;q=85" data-title="Detailing Bay">
+                          <img src="https://images.unsplash.com/photo-1519245659620-e859806a8d3b?auto=format&amp;fit=crop&amp;w=1000&amp;q=85" alt="Detailing Bay" draggable="false" loading="lazy" />
+                        <div class="gallery-overlay"><small>Behind The Scenes</small><strong>Detailing Bay</strong></div>
+          </div>
+                  <div class="gallery-item" data-type="image" data-src="https://images.unsplash.com/photo-1547038577-da80abbc4f19?auto=format&amp;fit=crop&amp;w=1000&amp;q=85" data-title="Weekend Ready">
+                          <img src="https://images.unsplash.com/photo-1547038577-da80abbc4f19?auto=format&amp;fit=crop&amp;w=1000&amp;q=85" alt="Weekend Ready" draggable="false" loading="lazy" />
+                        <div class="gallery-overlay"><small>Paint Correction</small><strong>Weekend Ready</strong></div>
+          </div>
+              </div>
     </div>
 
     <div class="gallery-filters reveal">
@@ -595,26 +609,46 @@ $reviews = [
     </div>
 
     <div class="packages-grid">
-      <?php foreach ($packages as $i => $p): ?>
-        <article class="pkg-card <?= $p['is_featured'] ? 'featured' : '' ?> reveal" style="--i:<?= $i ?>">
-          <?php if ($p['is_featured']): ?><span class="pkg-badge">Most Popular</span><?php endif; ?>
-          <div class="pkg-tag"><?= h($p['tag']) ?></div>
-          <h3><?= h($p['name']) ?></h3>
-          <p class="pkg-eg"><?= h($p['examples']) ?></p>
+              <article class="pkg-card  reveal" style="--i:0">
+                    <div class="pkg-tag">Compact</div>
+          <h3>Hatchback</h3>
+          <p class="pkg-eg">Swift · Baleno · i20 · Altroz · Punch · WagonR</p>
           <div class="pkg-price">
-            <span class="cur">₹</span><span class="amt"><?= h(number_format((float) $p['price'])) ?></span>
+            <span class="cur">₹</span><span class="amt">1,999</span>
           </div>
-          <div class="pkg-strike">₹<?= h(number_format((float) $p['strike_price'])) ?></div>
-          <div class="pkg-note"><?= h($p['note']) ?></div>
+          <div class="pkg-strike">₹3,999</div>
+          <div class="pkg-note">After 50% introductory discount</div>
           <ul>
-            <?php foreach (preg_split('/\r?\n/', trim($p['features'] ?? '')) as $feature): ?>
-              <?php if (trim($feature) !== ''): ?><li><?= h($feature) ?></li><?php endif; ?>
-            <?php endforeach; ?>
-          </ul>
-          <span class="magnetic"><a href="#book" class="btn <?= $p['is_featured'] ? 'btn-primary' : 'btn-outline-gold' ?> btn-block js-book-pkg" data-pkg-id="<?= (int) $p['id'] ?>">Book <?= h($p['name']) ?></a></span>
+                          <li>Full 23-step detox\nInterior + Exterior + Engine bay\nPremium liquid wax finish\nComplete steam sanitization</li>                      </ul>
+          <span class="magnetic"><a href="#book" class="btn btn-outline-gold btn-block js-book-pkg" data-pkg-id="1">Book Hatchback</a></span>
         </article>
-      <?php endforeach; ?>
-    </div>
+              <article class="pkg-card featured reveal" style="--i:1">
+          <span class="pkg-badge">Most Popular</span>          <div class="pkg-tag">Most Booked</div>
+          <h3>Sedan</h3>
+          <p class="pkg-eg">Dzire · Amaze · City · Verna · Slavia · Virtus</p>
+          <div class="pkg-price">
+            <span class="cur">₹</span><span class="amt">2,499</span>
+          </div>
+          <div class="pkg-strike">₹4,999</div>
+          <div class="pkg-note">After 50% introductory discount</div>
+          <ul>
+                          <li>Full 23-step detox\nInterior + Exterior + Engine bay\nPremium liquid wax finish\nComplete steam sanitization</li>                      </ul>
+          <span class="magnetic"><a href="#book" class="btn btn-primary btn-block js-book-pkg" data-pkg-id="2">Book Sedan</a></span>
+        </article>
+              <article class="pkg-card  reveal" style="--i:2">
+                    <div class="pkg-tag">Full-Size</div>
+          <h3>SUV / XUV</h3>
+          <p class="pkg-eg">Creta · Seltos · XUV700 · Nexon · Fortuner · Scorpio</p>
+          <div class="pkg-price">
+            <span class="cur">₹</span><span class="amt">2,999</span>
+          </div>
+          <div class="pkg-strike">₹5,999</div>
+          <div class="pkg-note">After 50% introductory discount</div>
+          <ul>
+                          <li>Full 23-step detox\nInterior + Exterior + Engine bay\nPremium liquid wax finish\nComplete steam sanitization</li>                      </ul>
+          <span class="magnetic"><a href="#book" class="btn btn-outline-gold btn-block js-book-pkg" data-pkg-id="3">Book SUV / XUV</a></span>
+        </article>
+          </div>
   </section>
 
   <!-- REVIEWS -->
@@ -629,17 +663,15 @@ $reviews = [
     <div class="reviews-wrap reveal">
       <div class="reviews-track-wrap">
         <div class="reviews-track reviews-compact" id="reviewsTrack">
-          <?php foreach ($reviews as $r): ?>
-            <div class="review-card">
+                      <div class="review-card">
               <div class="review-inner">
                 <div class="review-stars">
-                  <?php for ($s = 0; $s < 5; $s++): ?><svg viewBox="0 0 24 24"><path fill="currentColor" d="m12 2 3.1 6.3 7 1-5 4.9 1.2 6.9L12 17.8 5.7 21l1.2-6.9-5-4.9 7-1z"/></svg><?php endfor; ?>
-                </div>
-                <p class="review-text">"<?= h($r['text']) ?>"</p>
+                  <svg viewBox="0 0 24 24"><path fill="currentColor" d="m12 2 3.1 6.3 7 1-5 4.9 1.2 6.9L12 17.8 5.7 21l1.2-6.9-5-4.9 7-1z"/></svg><svg viewBox="0 0 24 24"><path fill="currentColor" d="m12 2 3.1 6.3 7 1-5 4.9 1.2 6.9L12 17.8 5.7 21l1.2-6.9-5-4.9 7-1z"/></svg><svg viewBox="0 0 24 24"><path fill="currentColor" d="m12 2 3.1 6.3 7 1-5 4.9 1.2 6.9L12 17.8 5.7 21l1.2-6.9-5-4.9 7-1z"/></svg><svg viewBox="0 0 24 24"><path fill="currentColor" d="m12 2 3.1 6.3 7 1-5 4.9 1.2 6.9L12 17.8 5.7 21l1.2-6.9-5-4.9 7-1z"/></svg><svg viewBox="0 0 24 24"><path fill="currentColor" d="m12 2 3.1 6.3 7 1-5 4.9 1.2 6.9L12 17.8 5.7 21l1.2-6.9-5-4.9 7-1z"/></svg>                </div>
+                <p class="review-text">"The 23-step process is no gimmick — my Creta genuinely looked showroom-new. The steam sanitization got rid of a smell I&#039;d given up on."</p>
                 <div class="review-person">
-                  <img src="https://i.pravatar.cc/150?img=<?= (int) $r['img'] ?>" alt="<?= h($r['name']) ?>" />
+                  <img src="https://i.pravatar.cc/150?img=24" alt="Rohan Kulkarni" />
                   <div class="review-person-meta">
-                    <strong><?= h($r['name']) ?></strong>
+                    <strong>Rohan Kulkarni</strong>
                     <span>
                       <svg viewBox="0 0 24 24"><path fill="currentColor" d="M21.8 12.3c0-.7-.1-1.4-.2-2H12v3.8h5.5a4.7 4.7 0 0 1-2 3.1v2.6h3.3c1.9-1.8 3-4.4 3-7.5"/><path fill="currentColor" d="M12 22c2.7 0 5-.9 6.7-2.4l-3.3-2.6c-.9.6-2.1 1-3.4 1-2.6 0-4.8-1.7-5.6-4.1H3v2.6A10 10 0 0 0 12 22"/><path fill="currentColor" d="M6.4 13.9a6 6 0 0 1 0-3.8V7.5H3a10 10 0 0 0 0 9z"/><path fill="currentColor" d="M12 5.9c1.5 0 2.8.5 3.8 1.5l2.9-2.9C16.9 2.7 14.6 1.8 12 1.8A10 10 0 0 0 3 7.5l3.4 2.6c.8-2.4 3-4.2 5.6-4.2"/></svg>
                       Google Review
@@ -648,8 +680,75 @@ $reviews = [
                 </div>
               </div>
             </div>
-          <?php endforeach; ?>
-        </div>
+                      <div class="review-card">
+              <div class="review-inner">
+                <div class="review-stars">
+                  <svg viewBox="0 0 24 24"><path fill="currentColor" d="m12 2 3.1 6.3 7 1-5 4.9 1.2 6.9L12 17.8 5.7 21l1.2-6.9-5-4.9 7-1z"/></svg><svg viewBox="0 0 24 24"><path fill="currentColor" d="m12 2 3.1 6.3 7 1-5 4.9 1.2 6.9L12 17.8 5.7 21l1.2-6.9-5-4.9 7-1z"/></svg><svg viewBox="0 0 24 24"><path fill="currentColor" d="m12 2 3.1 6.3 7 1-5 4.9 1.2 6.9L12 17.8 5.7 21l1.2-6.9-5-4.9 7-1z"/></svg><svg viewBox="0 0 24 24"><path fill="currentColor" d="m12 2 3.1 6.3 7 1-5 4.9 1.2 6.9L12 17.8 5.7 21l1.2-6.9-5-4.9 7-1z"/></svg><svg viewBox="0 0 24 24"><path fill="currentColor" d="m12 2 3.1 6.3 7 1-5 4.9 1.2 6.9L12 17.8 5.7 21l1.2-6.9-5-4.9 7-1z"/></svg>                </div>
+                <p class="review-text">"Booked the Sedan package for my City. Professional team, spotless interior, and they finished exactly on time. Worth every rupee."</p>
+                <div class="review-person">
+                  <img src="https://i.pravatar.cc/150?img=47" alt="Ananya Deshpande" />
+                  <div class="review-person-meta">
+                    <strong>Ananya Deshpande</strong>
+                    <span>
+                      <svg viewBox="0 0 24 24"><path fill="currentColor" d="M21.8 12.3c0-.7-.1-1.4-.2-2H12v3.8h5.5a4.7 4.7 0 0 1-2 3.1v2.6h3.3c1.9-1.8 3-4.4 3-7.5"/><path fill="currentColor" d="M12 22c2.7 0 5-.9 6.7-2.4l-3.3-2.6c-.9.6-2.1 1-3.4 1-2.6 0-4.8-1.7-5.6-4.1H3v2.6A10 10 0 0 0 12 22"/><path fill="currentColor" d="M6.4 13.9a6 6 0 0 1 0-3.8V7.5H3a10 10 0 0 0 0 9z"/><path fill="currentColor" d="M12 5.9c1.5 0 2.8.5 3.8 1.5l2.9-2.9C16.9 2.7 14.6 1.8 12 1.8A10 10 0 0 0 3 7.5l3.4 2.6c.8-2.4 3-4.2 5.6-4.2"/></svg>
+                      Google Review
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+                      <div class="review-card">
+              <div class="review-inner">
+                <div class="review-stars">
+                  <svg viewBox="0 0 24 24"><path fill="currentColor" d="m12 2 3.1 6.3 7 1-5 4.9 1.2 6.9L12 17.8 5.7 21l1.2-6.9-5-4.9 7-1z"/></svg><svg viewBox="0 0 24 24"><path fill="currentColor" d="m12 2 3.1 6.3 7 1-5 4.9 1.2 6.9L12 17.8 5.7 21l1.2-6.9-5-4.9 7-1z"/></svg><svg viewBox="0 0 24 24"><path fill="currentColor" d="m12 2 3.1 6.3 7 1-5 4.9 1.2 6.9L12 17.8 5.7 21l1.2-6.9-5-4.9 7-1z"/></svg><svg viewBox="0 0 24 24"><path fill="currentColor" d="m12 2 3.1 6.3 7 1-5 4.9 1.2 6.9L12 17.8 5.7 21l1.2-6.9-5-4.9 7-1z"/></svg><svg viewBox="0 0 24 24"><path fill="currentColor" d="m12 2 3.1 6.3 7 1-5 4.9 1.2 6.9L12 17.8 5.7 21l1.2-6.9-5-4.9 7-1z"/></svg>                </div>
+                <p class="review-text">"Best detailing studio in PCMC, hands down. The engine bay and underbody cleaning are things other car washes just skip."</p>
+                <div class="review-person">
+                  <img src="https://i.pravatar.cc/150?img=33" alt="Vikram Shah" />
+                  <div class="review-person-meta">
+                    <strong>Vikram Shah</strong>
+                    <span>
+                      <svg viewBox="0 0 24 24"><path fill="currentColor" d="M21.8 12.3c0-.7-.1-1.4-.2-2H12v3.8h5.5a4.7 4.7 0 0 1-2 3.1v2.6h3.3c1.9-1.8 3-4.4 3-7.5"/><path fill="currentColor" d="M12 22c2.7 0 5-.9 6.7-2.4l-3.3-2.6c-.9.6-2.1 1-3.4 1-2.6 0-4.8-1.7-5.6-4.1H3v2.6A10 10 0 0 0 12 22"/><path fill="currentColor" d="M6.4 13.9a6 6 0 0 1 0-3.8V7.5H3a10 10 0 0 0 0 9z"/><path fill="currentColor" d="M12 5.9c1.5 0 2.8.5 3.8 1.5l2.9-2.9C16.9 2.7 14.6 1.8 12 1.8A10 10 0 0 0 3 7.5l3.4 2.6c.8-2.4 3-4.2 5.6-4.2"/></svg>
+                      Google Review
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+                      <div class="review-card">
+              <div class="review-inner">
+                <div class="review-stars">
+                  <svg viewBox="0 0 24 24"><path fill="currentColor" d="m12 2 3.1 6.3 7 1-5 4.9 1.2 6.9L12 17.8 5.7 21l1.2-6.9-5-4.9 7-1z"/></svg><svg viewBox="0 0 24 24"><path fill="currentColor" d="m12 2 3.1 6.3 7 1-5 4.9 1.2 6.9L12 17.8 5.7 21l1.2-6.9-5-4.9 7-1z"/></svg><svg viewBox="0 0 24 24"><path fill="currentColor" d="m12 2 3.1 6.3 7 1-5 4.9 1.2 6.9L12 17.8 5.7 21l1.2-6.9-5-4.9 7-1z"/></svg><svg viewBox="0 0 24 24"><path fill="currentColor" d="m12 2 3.1 6.3 7 1-5 4.9 1.2 6.9L12 17.8 5.7 21l1.2-6.9-5-4.9 7-1z"/></svg><svg viewBox="0 0 24 24"><path fill="currentColor" d="m12 2 3.1 6.3 7 1-5 4.9 1.2 6.9L12 17.8 5.7 21l1.2-6.9-5-4.9 7-1z"/></svg>                </div>
+                <p class="review-text">"My Swift&#039;s paint looks glossier than the day I bought it. The liquid wax finish is next level. Already booked my next slot."</p>
+                <div class="review-person">
+                  <img src="https://i.pravatar.cc/150?img=45" alt="Sneha Patil" />
+                  <div class="review-person-meta">
+                    <strong>Sneha Patil</strong>
+                    <span>
+                      <svg viewBox="0 0 24 24"><path fill="currentColor" d="M21.8 12.3c0-.7-.1-1.4-.2-2H12v3.8h5.5a4.7 4.7 0 0 1-2 3.1v2.6h3.3c1.9-1.8 3-4.4 3-7.5"/><path fill="currentColor" d="M12 22c2.7 0 5-.9 6.7-2.4l-3.3-2.6c-.9.6-2.1 1-3.4 1-2.6 0-4.8-1.7-5.6-4.1H3v2.6A10 10 0 0 0 12 22"/><path fill="currentColor" d="M6.4 13.9a6 6 0 0 1 0-3.8V7.5H3a10 10 0 0 0 0 9z"/><path fill="currentColor" d="M12 5.9c1.5 0 2.8.5 3.8 1.5l2.9-2.9C16.9 2.7 14.6 1.8 12 1.8A10 10 0 0 0 3 7.5l3.4 2.6c.8-2.4 3-4.2 5.6-4.2"/></svg>
+                      Google Review
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+                      <div class="review-card">
+              <div class="review-inner">
+                <div class="review-stars">
+                  <svg viewBox="0 0 24 24"><path fill="currentColor" d="m12 2 3.1 6.3 7 1-5 4.9 1.2 6.9L12 17.8 5.7 21l1.2-6.9-5-4.9 7-1z"/></svg><svg viewBox="0 0 24 24"><path fill="currentColor" d="m12 2 3.1 6.3 7 1-5 4.9 1.2 6.9L12 17.8 5.7 21l1.2-6.9-5-4.9 7-1z"/></svg><svg viewBox="0 0 24 24"><path fill="currentColor" d="m12 2 3.1 6.3 7 1-5 4.9 1.2 6.9L12 17.8 5.7 21l1.2-6.9-5-4.9 7-1z"/></svg><svg viewBox="0 0 24 24"><path fill="currentColor" d="m12 2 3.1 6.3 7 1-5 4.9 1.2 6.9L12 17.8 5.7 21l1.2-6.9-5-4.9 7-1z"/></svg><svg viewBox="0 0 24 24"><path fill="currentColor" d="m12 2 3.1 6.3 7 1-5 4.9 1.2 6.9L12 17.8 5.7 21l1.2-6.9-5-4.9 7-1z"/></svg>                </div>
+                <p class="review-text">"Booked the SUV package for my XUV700 — engine bay, underbody, interior, everything covered. Transparent pricing, no upsell pressure."</p>
+                <div class="review-person">
+                  <img src="https://i.pravatar.cc/150?img=15" alt="Aditya Rane" />
+                  <div class="review-person-meta">
+                    <strong>Aditya Rane</strong>
+                    <span>
+                      <svg viewBox="0 0 24 24"><path fill="currentColor" d="M21.8 12.3c0-.7-.1-1.4-.2-2H12v3.8h5.5a4.7 4.7 0 0 1-2 3.1v2.6h3.3c1.9-1.8 3-4.4 3-7.5"/><path fill="currentColor" d="M12 22c2.7 0 5-.9 6.7-2.4l-3.3-2.6c-.9.6-2.1 1-3.4 1-2.6 0-4.8-1.7-5.6-4.1H3v2.6A10 10 0 0 0 12 22"/><path fill="currentColor" d="M6.4 13.9a6 6 0 0 1 0-3.8V7.5H3a10 10 0 0 0 0 9z"/><path fill="currentColor" d="M12 5.9c1.5 0 2.8.5 3.8 1.5l2.9-2.9C16.9 2.7 14.6 1.8 12 1.8A10 10 0 0 0 3 7.5l3.4 2.6c.8-2.4 3-4.2 5.6-4.2"/></svg>
+                      Google Review
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+                  </div>
       </div>
 
       <div class="reviews-nav">
@@ -669,10 +768,7 @@ $reviews = [
       <div class="divider" style="margin-left:auto;margin-right:auto;"></div>
     </div>
 
-    <?php if ($flash): ?>
-      <div class="booking-flash booking-flash-<?= h($flash['type']) ?> reveal"><?= h($flash['message']) ?></div>
-    <?php endif; ?>
-
+    
     <div class="steps-bar reveal" id="stepsBar">
       <div class="step-pill active" data-step="1"><span class="num">01</span><span class="label">Service</span></div>
       <div class="step-line"></div>
@@ -683,8 +779,8 @@ $reviews = [
       <div class="step-pill" data-step="4"><span class="num">04</span><span class="label">Confirm</span></div>
     </div>
 
-    <form class="booking-frame reveal" method="post" action="book.php" id="bookingForm">
-      <input type="hidden" name="csrf_token" value="<?= h(csrf_token()) ?>" />
+    <form class="booking-frame reveal" method="post" action="javascript:void(0)" id="bookingForm">
+      <input type="hidden" name="csrf_token" value="" />
       <input type="hidden" name="package_id" id="bf-package" required />
       <input type="hidden" name="preferred_time" id="bf-time" required />
 
@@ -692,14 +788,22 @@ $reviews = [
       <div class="bstep active" data-step="1">
         <h3>Select Your Package</h3>
         <div class="svc-pick-grid" id="svcPickGrid">
-          <?php foreach ($packages as $p): ?>
-            <button type="button" class="svc-pick js-svc-pick" data-pkg-id="<?= (int) $p['id'] ?>" data-pkg-name="<?= h($p['name']) ?>" data-pkg-price="<?= (int) $p['price'] ?>">
-              <div class="pk-tag"><?= h($p['tag']) ?></div>
-              <h4><?= h($p['name']) ?></h4>
-              <div class="pk-price">₹<?= h(number_format((float) $p['price'])) ?> <s>₹<?= h(number_format((float) $p['strike_price'])) ?></s></div>
+                      <button type="button" class="svc-pick js-svc-pick" data-pkg-id="1" data-pkg-name="Hatchback" data-pkg-price="1999">
+              <div class="pk-tag">Compact</div>
+              <h4>Hatchback</h4>
+              <div class="pk-price">₹1,999 <s>₹3,999</s></div>
             </button>
-          <?php endforeach; ?>
-        </div>
+                      <button type="button" class="svc-pick js-svc-pick" data-pkg-id="2" data-pkg-name="Sedan" data-pkg-price="2499">
+              <div class="pk-tag">Most Booked</div>
+              <h4>Sedan</h4>
+              <div class="pk-price">₹2,499 <s>₹4,999</s></div>
+            </button>
+                      <button type="button" class="svc-pick js-svc-pick" data-pkg-id="3" data-pkg-name="SUV / XUV" data-pkg-price="2999">
+              <div class="pk-tag">Full-Size</div>
+              <h4>SUV / XUV</h4>
+              <div class="pk-price">₹2,999 <s>₹5,999</s></div>
+            </button>
+                  </div>
         <div class="bstep-nav">
           <span></span>
           <span class="magnetic"><button type="button" class="btn btn-primary js-next" data-next="2">Continue</button></span>
@@ -711,15 +815,17 @@ $reviews = [
         <h3>Pick Date &amp; Time</h3>
         <div class="bf-row">
           <label for="bf-date">Preferred Date *</label>
-          <input id="bf-date" type="date" name="preferred_date" required min="<?= h($today) ?>" />
+          <input id="bf-date" type="date" name="preferred_date" required min="2026-09-13" />
         </div>
         <div class="bf-row">
           <label>Available Time Slots *</label>
           <div class="slots-grid" id="slotsGrid">
-            <?php foreach ($timeSlots as $slot): ?>
-              <button type="button" class="slot-btn js-slot" data-slot="<?= h($slot) ?>"><?= h($slot) ?></button>
-            <?php endforeach; ?>
-          </div>
+                          <button type="button" class="slot-btn js-slot" data-slot="09:00 AM">09:00 AM</button>
+                          <button type="button" class="slot-btn js-slot" data-slot="11:00 AM">11:00 AM</button>
+                          <button type="button" class="slot-btn js-slot" data-slot="01:00 PM">01:00 PM</button>
+                          <button type="button" class="slot-btn js-slot" data-slot="03:00 PM">03:00 PM</button>
+                          <button type="button" class="slot-btn js-slot" data-slot="05:00 PM">05:00 PM</button>
+                      </div>
         </div>
         <div class="bstep-nav">
           <span class="magnetic"><button type="button" class="btn btn-ghost small-back js-back" data-back="1">Back</button></span>
@@ -862,10 +968,12 @@ $reviews = [
       <div>
         <h4>Services</h4>
         <ul>
-          <?php foreach (array_slice($services, 0, 5) as $s): ?>
-            <li><a href="#svc-<?= h($s['id']) ?>"><?= $s['title'] ?></a></li>
-          <?php endforeach; ?>
-        </ul>
+                      <li><a href="#svc-detox">Detox</a></li>
+                      <li><a href="#svc-rubbing">Rubbing &amp; Polishing</a></li>
+                      <li><a href="#svc-glass">Glass Buffing</a></li>
+                      <li><a href="#svc-ceramic">Ceramic Coating</a></li>
+                      <li><a href="#svc-graphene">Graphene Coating</a></li>
+                  </ul>
       </div>
 
       <div>
@@ -874,7 +982,7 @@ $reviews = [
           <li><a href="tel:+917744028466">+91 77440 28466</a></li>
           <li><a href="tel:+917020364562">+91 70203 64562</a></li>
           <li><a href="mailto:autodetoxstudio@gmail.com">autodetoxstudio@gmail.com</a></li>
-          <li><a href="my-bookings.php">Check My Booking Status</a></li>
+          <li><a href="#book">Check My Booking Status</a></li>
         </ul>
       </div>
     </div>
@@ -895,7 +1003,7 @@ $reviews = [
   </div>
 
   <script>
-    window.__services = <?= json_encode($services, JSON_UNESCAPED_SLASHES) ?>;
+    window.__services = [{"id":"detox","title":"Detox","icon":"droplet","desc":"Complete touchless wash, sanitization &amp; interior-exterior detox for a showroom-fresh feel.","pricing":[{"label":"Hatchback","price":1999},{"label":"Sedan / Compact SUV","price":2499},{"label":"SUV / XUV","price":2999}],"cta":{"type":"book","label":"Book Now"}},{"id":"rubbing","title":"Rubbing &amp; Polishing","icon":"shine","desc":"Restore paint. Reveal the shine \u2014 swirl-free gloss correction.","pricing":[{"label":"Hatchback","price":2499},{"label":"Sedan / Compact SUV","price":2999},{"label":"SUV / XUV","price":3499}],"cta":{"type":"book","label":"Book Now"}},{"id":"glass","title":"Glass Buffing","icon":"glass","desc":"Crystal-clear visibility with a full 6-glass buffing treatment.","pricing":[{"label":"All 6 Glasses","price":2199}],"cta":{"type":"book","label":"Book Now"}},{"id":"ceramic","title":"Ceramic Coating","icon":"shield","flag":"2 Yrs Warranty","desc":"High-gloss, water &amp; dirt repellent armor with long-lasting protection.","pricing":[{"label":"Bike Ceramic Coating","price":3999,"onwards":true},{"label":"Car Ceramic Coating","price":10999,"onwards":true}],"cta":{"type":"view","label":"View Details","href":"#ceramic-coating"}},{"id":"graphene","title":"Graphene Coating","icon":"spark","desc":"Next-generation protection with maximum performance &amp; durability.","pricing":[{"label":"Bike Graphene Coating","quote":true},{"label":"Car Graphene Coating","quote":true}],"cta":{"type":"view","label":"View Details","href":"#graphene-coating"}},{"id":"denting","title":"Denting &amp; Painting","icon":"wrench","desc":"Dent-free panels &amp; factory-match paint, quoted after inspection.","pricing":[{"label":"All Vehicles","quote":true,"note":"Get Quote on Call"}],"cta":{"type":"quote","label":"Get Quote"}},{"id":"underbody","title":"Underbody Coating","icon":"engine","desc":"Anti-rust, anti-corrosion shield against monsoon splashes &amp; debris.","pricing":[{"label":"Hatchback","price":2499},{"label":"Sedan / Compact SUV","price":2999},{"label":"SUV / XUV","price":3499}],"cta":{"type":"book","label":"Book Now"}}];
   </script>
   <script src="js/main.js" defer></script>
 </body>
