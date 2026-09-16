@@ -5,7 +5,7 @@
     const services = window.__services || [];
     const EMAIL_TO = 'autodetoxstudio@gmail.com';
 
-    const sendEmailToStudio = async (payload, source = 'Website Form') => {
+    const sendEmailToStudio = async(payload, source = 'Website Form') => {
         const subject = payload.subject || `New ${source} from ${payload.name || 'Website Visitor'}`;
         const body = [
             `Source: ${source}`,
@@ -438,7 +438,7 @@
         $$('.js-book-pkg').forEach(btn => btn.addEventListener('click', () => selectPackageInForm(btn.dataset.pkgId)));
         $$('.js-book-service').forEach(btn => btn.addEventListener('click', () => goStep(1)));
 
-        bookingForm.addEventListener('submit', async (event) => {
+        bookingForm.addEventListener('submit', async(event) => {
             event.preventDefault();
 
             const finalPackage = $('.js-svc-pick.selected', bookingForm);
@@ -611,7 +611,7 @@
     }
 
     if (enquiryForm) {
-        enquiryForm.addEventListener('submit', async (event) => {
+        enquiryForm.addEventListener('submit', async(event) => {
             event.preventDefault();
 
             const name = $('#eq-name', enquiryForm).value.trim();
